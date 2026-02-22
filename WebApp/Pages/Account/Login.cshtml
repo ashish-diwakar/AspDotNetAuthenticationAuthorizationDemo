@@ -42,5 +42,21 @@
                 <a class="btn btn-link" asp-page="/Account/Register">Register as a new user</a>
             </div>
         </div>
+        @if (Model.ExternalLoginProviders is not null && Model.ExternalLoginProviders.Count() > 0)
+        {
+            <br />
+            <p>
+                @foreach (var provider in Model.ExternalLoginProviders)
+                {
+                    <button type="submit"
+                            asp-page-handler="LoginExternally"
+                            name="provider"
+                            value="@provider.Name"
+                            class="btn btn-primary">
+                        Login with @provider.DisplayName
+                    </button>
+                }
+            </p>
+        }
     </form>
 </div>
